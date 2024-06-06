@@ -1,4 +1,4 @@
-const Pause  = require("./pauseCafe");
+const Pause  = require("../microservices/pauseCafe");
 const Cats = require("../microservices/catsWiki");
 const express = require("express");
 const router = express();
