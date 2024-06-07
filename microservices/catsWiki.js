@@ -25,9 +25,9 @@ exports.getKittens = (req, res) =>{
     });
     
     
-    Cats.find().then((books) =>{
-        console.log(books);
-        res.json(books)
+    Cats.find().then((cats) =>{
+        console.log(cats);
+        res.json(cats)
     });
 
 
