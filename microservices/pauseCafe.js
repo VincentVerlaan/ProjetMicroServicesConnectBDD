@@ -8,14 +8,17 @@ exports.getHello  = (req, res)=>{
     
 };
 
+const database_postgres = new Client({
+    user: 'user',
+    password: 'mysecretpassword',
+    host: '0.0.0.0',
+    port: '8001',
+    database: 'postgres',
+});
+
+//Select data
 exports.getData = (req, res)=>{
-    const database_postgres = new Client({
-        user: 'user',
-        password: 'mysecretpassword',
-        host: '0.0.0.0',
-        port: '8001',
-        database: 'postgres',
-    });
+    
     database_postgres
     .connect()
     .then(() => {
@@ -39,6 +42,41 @@ exports.getData = (req, res)=>{
         });
     });
 };
+
+
+//Insert Data
+exports.insertData = (req, res) =>{
+    database_postgres
+    .connect()
+    .then(()=>{
+        console.log('Connected to', database_postgres.database,' database');
+        
+        const insert = 'INSERT INTO test(individu, boisson) VALUES ($1,$2)';
+        const values = ['Vincent', 'Potage'];
+        database_postgres.query(insert, values, (err, result)=>{
+            if (err){
+                console.error('Error inserting data', err);
+            }
+            else{
+                console.log("Data inserted");
+                database_postgres.end().then(()=>{
+                    console.log("Connection closed");
+                    res.send(result.rows);
+                });
+            }
+        })
+
+    })
+}
+
+
+
+
+
+
+
+
+
 
 exports.getTestService = (req, res) => {
     res.send(hello.Skibidi)

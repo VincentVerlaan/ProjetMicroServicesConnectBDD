@@ -9,6 +9,7 @@ router.get("/hello", Pause.getHello);
 router.get("/testService", Pause.getTestService);
 router.get("/pause", Pause.getData);
 router.get("/cats", Cats.getKittens);
+router.post("/pause", Pause.insertData);
 module.exports = router;
 
 //mongoose.connect('mongodb://user:mysecretpassword@0.0.0.0:8002/cesi_eats_mongo');

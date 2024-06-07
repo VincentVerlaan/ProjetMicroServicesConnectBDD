@@ -17,6 +17,7 @@ const catsSchema = new mongoose.Schema({
     activity : String,
     rarity : String,
 });
+
 const Cats = mongoose.model('Cats', catsSchema);
 exports.getKittens = (req, res) =>{
     mongoose.connect('mongodb://user:mysecretpassword@0.0.0.0:8002/')
