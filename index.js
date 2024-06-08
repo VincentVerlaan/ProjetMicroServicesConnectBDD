@@ -1,18 +1,30 @@
 const express = require('express');
 const app = express();
-const routes = require('./api/routes');
+
 const mongoose = require('mongoose');
 const { Client } = require('pg');
-app.use(routes);
+const Pause  = require("./microservices/pauseCafe");
+const Cats = require("./microservices/catsWiki");
 
 
+//app.use(routes);
 app.get('/test', (req, res) => {
   res.send('Hello, World!');
 });
-
+app.get("/pause", Pause.getData);
+app.get("/hello", Pause.getHello);
+app.get("/testService", Pause.getTestService);
+app.get("/pause", Pause.getData);
+app.get("/cats", Cats.getKittens);
+app.post("/pause", Pause.insertData);
 app.listen(3000, () => {
   console.log('Microservice listening on port 3000');
 });
+
+
+
+//module.exports = database_postgres;
+
 
 // mongoose.connect('mongodb://user:mysecretpassword@0.0.0.0:8002/')
 // .then(()=> {
