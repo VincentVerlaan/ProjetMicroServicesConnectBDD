@@ -1,4 +1,3 @@
-const hello = require("./catsWiki");
 const express = require("express")
 const { Client } = require('pg');
 const app = express();
